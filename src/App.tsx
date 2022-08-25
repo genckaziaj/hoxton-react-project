@@ -17,7 +17,7 @@ function App() {
       });
   }, []);
 
-  function postQuestion(titleQuestion: any, content: any) {
+  function postQuestion(titleQuestion: string, content: string) {
     let newQuestion = {
       titleQuestion: titleQuestion,
       content: content,
