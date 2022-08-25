@@ -1,0 +1,51 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "titleQuestion": "React",
+      "content": "How do you loop over elements in React?",
+      "userId": 1,
+      "answers": 3,
+      "answerUser": "Jack",
+      "date": null
+    },
+    {
+      "id": 2,
+      "titleQuestion": "Javascript",
+      "content": "How do you make a copy of an object in Javascript?",
+      "userId": 2,
+      "answers": 5,
+      "answerUser": "Paul",
+      "date": null
+    },
+    {
+      "id": 3,
+      "titleQuestion": "Css",
+      "content": "How does grid work?",
+      "userId": 1,
+      "answers": 5,
+      "answerUser": "Paul",
+      "date": null
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Genc",
+      "email": "genckaziaj@yahoo.com",
+      "password": "genci23"
+    },
+    {
+      "id": 2,
+      "username": "Luca",
+      "email": "luca@gmail.com",
+      "password": "luca123"
+    },
+    {
+      "id": 3,
+      "username": "Ed",
+      "email": "ed@gmail.com",
+      "password": "ed123"
+    }
+  ]
+}
