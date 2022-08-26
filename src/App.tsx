@@ -1,29 +1,43 @@
 import { useEffect, useState } from "react";
-import { Navigation } from "./components/Navigation";
-import { ForumHeader } from "./components/ForumHeader";
-import { Question } from "./components/Question";
+import { Navigate, useNavigate, Route, Routes } from "react-router-dom";
+import { Navigation } from "./pages/Navigation";
+import { Home } from "./pages/Home";
+import { LogIn } from "./pages/LogIn";
+import { SignUp } from "./pages/SignUp";
+import { UserProfile } from "./pages/UserProfile";
+import { QuestionForm } from "./pages/QuestionForm";
+import { Answer } from "./pages/Answer";
 import { QuestionItem, User } from "./types";
+import { PageNotFound } from "./pages/PageNotFound";
 import "./App.css";
 
 function App() {
   const [questions, setQuestions] = useState<QuestionItem[]>([]);
   const [user, setUser] = useState<null | User>(null);
 
-  useEffect(() => {
-    fetch("http://localhost:3001/questions")
-      .then((resp) => resp.json())
-      .then((questionsFromServer) => {
-        setQuestions(questionsFromServer);
-      });
-  }, []);
+  const navigate = useNavigate();
 
-  function postQuestion(titleQuestion: string, content: string) {
+  function signIn(user: User) {
+    localStorage.id = user.id;
+    setUser(user);
+    navigate("/profile");
+  }
+
+  function signOut() {
+    localStorage.removeItem("id");
+    setUser(null);
+  }
+
+  function postQuestion(
+    titleQuestion: string,
+    content: string,
+    userId: string
+  ) {
     let newQuestion = {
       titleQuestion: titleQuestion,
       content: content,
+      userId: userId,
     };
-
-    console.log(newQuestion);
 
     fetch("http://localhost:3001/questions", {
       method: "POST",
@@ -38,33 +52,35 @@ function App() {
       });
   }
 
+  useEffect(() => {
+    const userId = localStorage.id;
+    fetch("http://localhost:3001/questions")
+      .then((resp) => resp.json())
+      .then((questionsFromServer) => {
+        setQuestions(questionsFromServer);
+        if (userId) setUser(userId);
+      });
+  }, []);
+
   return (
     <div className="App">
-      <Navigation />
-      <Question postQuestion={postQuestion} />
-      <div className="forum-wrapper">
-        <div className="categories">
-          <ForumHeader />
-          {questions.map((question) => (
-            <div key={question.id} className="content">
-              <div className="topic-content">
-                <div className="tc-description">
-                  <div className="d-title">{question.titleQuestion}</div>
-                  <div className="d-description">
-                    <p>{question.content}</p>
-                  </div>
-                </div>
-                <div className="tc-topic">{question.userId}</div>
-                <div className="tc-post">{question.answers}</div>
-                <div className="tc-l-post">
-                  <div className="lp-user">by {question.answerUser}</div>
-                  <div className="lp-date">{question.date}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Navigation signOut={signOut} user={user} />
+      <Routes>
+        <Route index element={<Navigate to="/home" />} />
+        <Route
+          path="/home"
+          element={<Home questions={questions} user={user} />}
+        />
+        <Route path="/login" element={<LogIn signIn={signIn} />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<UserProfile user={user} />} />
+        <Route
+          path="/question"
+          element={<QuestionForm postQuestion={postQuestion} />}
+        />
+        <Route path="/question/:questionId" element={<Answer />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </div>
   );
 }

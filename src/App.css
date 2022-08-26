@@ -6,6 +6,11 @@
   flex-flow: column wrap;
 }
 
+h1 {
+  text-align: center;
+  margin-top: 50px;
+}
+
 .nav {
   background: #b8d7eb;
   color: #3f73c0;
@@ -72,9 +77,31 @@
   text-align: center;
 }
 
-.ask button {
+.button {
   display: block;
   width: 100%;
+}
+
+.login-container {
+  margin-right: 10px;
+  margin-top: 1px;
+}
+
+.nav .username {
+  color: black;
+  vertical-align: center;
+  margin-right: 20px;
+  margin-top: 15px;
+}
+
+.ask a,
+.login-container a {
+  all: unset;
+}
+
+.ask a:hover,
+.login-container a {
+  all: unset;
 }
 
 .login-page {
