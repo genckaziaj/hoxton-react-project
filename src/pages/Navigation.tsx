@@ -13,7 +13,7 @@ export function Navigation({ signOut, user }: Props) {
         <div className="topnav">
           <Link to="/home">Home</Link>
           <Link to="/profile">Profile</Link>
-          <a>Contact</a>
+          <Link to="/about">About</Link>
           {user === null ? (
             <div className="login-container">
               <Link to="/login">

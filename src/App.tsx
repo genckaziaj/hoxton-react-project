@@ -8,6 +8,7 @@ import { UserProfile } from "./pages/UserProfile";
 import { QuestionForm } from "./pages/QuestionForm";
 import { Answer } from "./pages/Answer";
 import { QuestionItem, User } from "./types";
+import { AboutPage } from "./pages/AboutPage";
 import { PageNotFound } from "./pages/PageNotFound";
 import "./App.css";
 
@@ -79,6 +80,7 @@ function App() {
           element={<QuestionForm postQuestion={postQuestion} />}
         />
         <Route path="/question/:questionId" element={<Answer />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>

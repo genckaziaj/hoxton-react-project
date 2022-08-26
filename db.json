@@ -29,6 +29,12 @@
       "content": "What is a anonymous function?",
       "userId": "dilan@hotmail.com",
       "id": 5
+    },
+    {
+      "titleQuestion": "Css",
+      "content": "What is grid",
+      "userId": "nico@gmail.com",
+      "id": 6
     }
   ],
   "answers": [
@@ -61,6 +67,12 @@
       "content": "Grid is a Css property",
       "userId": "genckaziaj@yahoo.com",
       "id": 5
+    },
+    {
+      "questionId": "2",
+      "content": "Are you talking of a deep clone",
+      "userId": "nico@gmail.com",
+      "id": 6
     }
   ],
   "users": [
@@ -103,6 +115,11 @@
       "id": "kerry@gmail.com",
       "username": "Kerry",
       "password": "kerry1234"
+    },
+    {
+      "id": "nico@gmail.com",
+      "username": "Nico",
+      "password": "nico123"
     }
   ]
 }
